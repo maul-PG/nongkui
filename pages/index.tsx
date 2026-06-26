@@ -120,8 +120,8 @@ export default function Home({ cafes = [] }: HomeProps) {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         setUserCoords({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
+          latitude: parseFloat(position.coords.latitude.toString()),
+          longitude: parseFloat(position.coords.longitude.toString()),
         });
         setLoadingLocation(false);
         setSortBy('distance'); // Automatically switch sorting to distance
@@ -130,8 +130,8 @@ export default function Home({ cafes = [] }: HomeProps) {
         console.warn('Geolocation error, falling back to Malioboro Jogja Center:', error.message);
         // Fallback to Yogyakarta Monument / Malioboro Center coordinates
         setUserCoords({
-          latitude: -7.7972,
-          longitude: 110.3688,
+          latitude: parseFloat('-7.7972'),
+          longitude: parseFloat('110.3688'),
         });
         setLocationError('Gagal mengakses GPS. Menggunakan titik pusat Malioboro Jogja.');
         setLoadingLocation(false);
@@ -166,10 +166,10 @@ export default function Home({ cafes = [] }: HomeProps) {
       let distance: number | null = null;
       if (userCoords) {
         distance = calculateDistance(
-          userCoords.latitude,
-          userCoords.longitude,
-          cafe.latitude,
-          cafe.longitude
+          parseFloat(userCoords.latitude.toString()),
+          parseFloat(userCoords.longitude.toString()),
+          parseFloat(cafe.latitude.toString()),
+          parseFloat(cafe.longitude.toString())
         );
       }
       return { ...cafe, distance };
@@ -653,7 +653,7 @@ export default function Home({ cafes = [] }: HomeProps) {
                   <div className="flex border-t border-stone-850/80 divide-x divide-stone-850/80">
                     {/* Google Maps Route Button */}
                     <a
-                      href={`https://www.google.com/maps/dir/?api=1&destination=${cafe.latitude},${cafe.longitude}`}
+                      href={`https://www.google.com/maps/dir/?api=1&destination=${parseFloat(cafe.latitude.toString())},${parseFloat(cafe.longitude.toString())}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex-1 flex items-center justify-center gap-1.5 px-4 py-3.5 bg-stone-950/20 hover:bg-stone-950/50 text-stone-400 hover:text-stone-200 transition-all text-xs font-semibold text-center select-none"

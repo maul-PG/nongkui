@@ -1,0 +1,57 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer base {
+  body {
+    @apply bg-espresso-950 text-stone-100 font-sans antialiased;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(130, 78, 50, 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(95, 143, 91, 0.1) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(12, 10, 9, 0.5) 0px, transparent 50%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  /* Custom Premium Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #1c1917;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #57534e;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b07850;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    background: rgba(41, 37, 36, 0.45);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(120, 113, 108, 0.15);
+  }
+
+  .glass-card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .glass-card-hover:hover {
+    background: rgba(44, 40, 38, 0.65);
+    border-color: rgba(176, 120, 80, 0.4);
+    box-shadow: 0 10px 30px -10px rgba(176, 120, 80, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .glow-text-amber {
+    text-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
+  }
+  
+  .glow-text-emerald {
+    text-shadow: 0 0 12px rgba(16, 185, 129, 0.3);
+  }
+}

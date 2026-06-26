@@ -1,0 +1,42 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Cafe {
+  id             String   @id @default(uuid())
+  name           String
+  category       String
+  address        String
+  latitude       Float
+  longitude      Float
+  openingHours   String
+  ambiance       String
+  isSpacious     Boolean
+  hasSmokingArea Boolean
+  googlePlaceId  String?  @unique
+  rating         Float?
+  reviewsCount   Int?
+  priceRange     String?
+  imageUrl       String?
+  menus          Menu[]
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Menu {
+  id            String   @id @default(uuid())
+  cafeId        String
+  cafe          Cafe     @relation(fields: [cafeId], references: [id], onDelete: Cascade)
+  name          String
+  price         Float
+  isRecommended Boolean
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}

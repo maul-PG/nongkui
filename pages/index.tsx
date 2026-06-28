@@ -289,10 +289,21 @@ export default function Home({ cafes = [] }: HomeProps) {
   return (
     <>
       <Head>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+       "@context": "https://schema.org",
+       "@type": "WebSite",
+       "name": "Nongkui",
+       "url": "https://nongkui.myvnc.com"
+        }),
+        }}
+      />
         <title>Nongkui — Jogja Cafe Discovery Directory</title>
         <meta name="description" content="Temukan cafe terbaik untuk WFC, 24 Jam, Aesthetic, dan Outdoor di Yogyakarta. Lengkap dengan rating, menu, dan filter jarak terdekat." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="https://i.ibb.co.com/JwcVLyP3/location-1.png" type="image/png" />
       </Head>
 
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
